@@ -4,31 +4,82 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an AI-driven blog project that is currently in its initial setup phase. The repository contains only a basic README.md file and git initialization.
+AI-driven blog system with comprehensive content management and AI-powered features. The project uses a Laravel backend with Next.js frontend architecture.
 
-## Current State
+## Technology Stack
 
-- Project name: ai-driven-blog
-- Repository is initialized with git
-- No build system, dependencies, or source code present yet
-- No package.json, requirements.txt, or other dependency files
-- No testing framework configured
-- No linting or formatting tools configured
+### Backend (Laravel)
+- **Framework**: Laravel (PHP)
+- **Database**: PostgreSQL
+- **Authentication**: Laravel Sanctum (JWT)
+- **Architecture**: RESTful API
 
-## Development Setup
+### Frontend (Next.js)
+- **Framework**: Next.js with TypeScript
+- **Styling**: TailwindCSS
+- **UI Components**: shadcn/ui
+- **State Management**: React Context/Zustand (to be determined)
 
-Since this is a new project with no existing structure, the technology stack and build tools have not been established yet. Future development will need to:
+## Project Structure
 
-1. Choose a technology stack (e.g., Node.js, Python, etc.)
-2. Set up package management and dependencies
-3. Configure build and development tools
-4. Establish project structure and architecture
+```
+ai-driven-blog/
+├── docs/                    # Project documentation
+│   ├── blog-requirements.md # Comprehensive feature requirements
+│   ├── development-issues.md # Issue management and milestones
+│   └── project-board-setup.md # GitHub project board configuration
+├── backend/                 # Laravel API (not yet created)
+└── frontend/               # Next.js application (not yet created)
+```
 
-## Notes for Future Development
+## Development Milestones
 
-This CLAUDE.md file should be updated once the project structure and development workflow are established to include:
-- Build commands
-- Test execution commands  
-- Linting and formatting commands
-- Project architecture details
-- Development workflow instructions
+Based on `docs/development-issues.md`, the project follows a 4-phase development approach:
+
+1. **Milestone 1**: Environment setup and infrastructure (Docker, Laravel, Next.js)
+2. **Milestone 2**: Authentication and basic CRUD operations
+3. **Milestone 3**: UI/UX implementation and content management
+4. **Milestone 4**: Advanced features (search, SEO optimization)
+
+## Key Features (from requirements)
+
+### Core Blog Features
+- Article CRUD with draft/publish states
+- Category and tag management
+- Media upload with image optimization
+- Rich text editor with real-time saving
+
+### AI-Powered Features
+- Text proofreading (`POST /api/ai/proofread`)
+- Auto-tag generation (`POST /api/ai/generate-tags`)
+- Content summarization (`POST /api/ai/summarize`)
+- SEO optimization (`POST /api/ai/seo-optimize`)
+
+## API Design
+
+Key API endpoints (from requirements):
+- `GET/POST/PUT/DELETE /api/posts` - Article management
+- `POST /api/media/upload` - File uploads
+- `POST /api/ai/*` - AI feature endpoints
+
+## Database Schema
+
+Main entities:
+- **posts**: id, title, content, summary, author_id, category_id, status, timestamps
+- **categories**: id, name, slug, description, parent_id (hierarchical)
+- **tags**: id, name, slug, count
+- **post_tags**: Many-to-many relationship table
+
+## Development Setup (Future)
+
+When the technical implementation begins, expect to run:
+- `composer install` and `php artisan serve` for Laravel backend
+- `npm install` and `npm run dev` for Next.js frontend
+- Docker containers for development environment consistency
+
+## Issue Management
+
+The project uses GitHub Issues with structured milestones and labels as defined in `docs/development-issues.md`. Issues are categorized by:
+- **Priority**: high/medium/low
+- **Type**: feature/bug/enhancement/docs/setup
+- **Area**: backend/frontend/database/ui-ux/devops
