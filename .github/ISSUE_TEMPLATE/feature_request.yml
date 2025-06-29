@@ -1,0 +1,78 @@
+name: 🚀 Feature Request
+description: 新機能の提案
+title: "[Feature] "
+labels: ["type: feature"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        新機能の提案をありがとうございます！
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: 機能の概要
+      description: 実装したい機能について説明してください
+      placeholder: この機能は...
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: 動機・理由
+      description: なぜこの機能が必要なのか説明してください
+      placeholder: この機能により...
+    validations:
+      required: true
+
+  - type: textarea
+    id: tasks
+    attributes:
+      label: 実装タスク
+      description: 実装に必要なタスクを列挙してください
+      placeholder: |
+        - [ ] タスク1
+        - [ ] タスク2
+        - [ ] タスク3
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: 完了条件
+      description: この機能の完了条件を定義してください
+      placeholder: |
+        - 条件1が満たされている
+        - 条件2が確認できる
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 優先度
+      description: この機能の優先度を選択してください
+      options:
+        - high
+        - medium
+        - low
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 技術領域
+      description: 主な技術領域を選択してください
+      options:
+        - backend
+        - frontend
+        - database
+        - ui/ux
+        - devops
+    validations:
+      required: true

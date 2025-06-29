@@ -1,0 +1,78 @@
+name: ⚙️ Setup Task
+description: 環境構築・設定タスク
+title: "[Setup] "
+labels: ["type: setup"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        環境構築・設定タスクの作成をありがとうございます！
+
+  - type: textarea
+    id: setup-description
+    attributes:
+      label: セットアップの概要
+      description: 設定・構築する内容について説明してください
+      placeholder: ...の環境構築
+    validations:
+      required: true
+
+  - type: textarea
+    id: setup-tasks
+    attributes:
+      label: セットアップタスク
+      description: 必要な作業を列挙してください
+      placeholder: |
+        - [ ] タスク1
+        - [ ] タスク2
+        - [ ] タスク3
+    validations:
+      required: true
+
+  - type: textarea
+    id: completion-criteria
+    attributes:
+      label: 完了条件
+      description: セットアップ完了の条件を定義してください
+      placeholder: |
+        - 環境が正常に起動する
+        - 基本機能が動作する
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: 依存関係
+      description: 前提となる作業や依存するIssueがあれば記載してください
+      placeholder: "#1, #2 の完了後に実施"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 技術領域
+      description: 主な技術領域を選択してください
+      options:
+        - backend
+        - frontend
+        - database
+        - devops
+        - docs
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 優先度
+      description: この作業の優先度を選択してください
+      options:
+        - high
+        - medium
+        - low
+    validations:
+      required: true
