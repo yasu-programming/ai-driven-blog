@@ -19,22 +19,22 @@ export function Header() {
     <header className="border-b">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold text-primary">
-          AI Driven Blog
+AI駆動ブログ
         </Link>
         
         <nav className="hidden md:flex space-x-6">
           <Link href="/" className="text-muted-foreground hover:text-foreground">
-            Home
+ホーム
           </Link>
           <Link href="/posts" className="text-muted-foreground hover:text-foreground">
-            Posts
+記事
           </Link>
           <Link href="/categories" className="text-muted-foreground hover:text-foreground">
-            Categories
+カテゴリー
           </Link>
           {user && (
             <Link href="/dashboard" className="text-muted-foreground hover:text-foreground">
-              Dashboard
+ダッシュボード
             </Link>
           )}
         </nav>
@@ -43,22 +43,22 @@ export function Header() {
           {user ? (
             <div className="flex items-center space-x-2">
               <Button variant="outline" asChild>
-                <Link href="/posts/create">Create Post</Link>
+                <Link href="/posts/create">記事作成</Link>
               </Button>
               <span className="text-sm text-muted-foreground">
-                Welcome, {user.name}
+ようこそ、{user.name}さん
               </span>
               <Button variant="ghost" onClick={handleLogout}>
-                Logout
+ログアウト
               </Button>
             </div>
           ) : (
             <>
               <Button variant="ghost" asChild>
-                <Link href="/login">Login</Link>
+                <Link href="/login">ログイン</Link>
               </Button>
               <Button asChild>
-                <Link href="/register">Register</Link>
+                <Link href="/register">アカウント作成</Link>
               </Button>
             </>
           )}

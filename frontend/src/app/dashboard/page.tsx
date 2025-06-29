@@ -22,30 +22,30 @@ export default function DashboardPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-start mb-8">
           <div>
-            <h1 className="text-3xl font-bold">Dashboard</h1>
+            <h1 className="text-3xl font-bold">ダッシュボード</h1>
             <p className="text-muted-foreground mt-2">
-              Welcome back, {user?.name}!
+              おかえりなさい、{user?.name}さん！
             </p>
           </div>
           <Button onClick={handleLogout} variant="outline">
-            Logout
+ログアウト
           </Button>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Card>
             <CardHeader>
-              <CardTitle>My Posts</CardTitle>
+              <CardTitle>私の記事</CardTitle>
               <CardDescription>
-                Manage your blog posts
+                ブログ記事を管理する
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div className="text-2xl font-bold">0</div>
-                <p className="text-sm text-muted-foreground">Total posts</p>
+                <p className="text-sm text-muted-foreground">総記事数</p>
                 <Button asChild className="w-full">
-                  <Link href="/dashboard/posts">Manage Posts</Link>
+                  <Link href="/dashboard/posts">記事管理</Link>
                 </Button>
               </div>
             </CardContent>
@@ -53,18 +53,18 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Create Post</CardTitle>
+              <CardTitle>記事作成</CardTitle>
               <CardDescription>
-                Start writing a new blog post
+                新しいブログ記事を書き始める
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <p className="text-sm text-muted-foreground">
-                  Share your thoughts with the world
+                  あなたの思いを世界と共有しましょう
                 </p>
                 <Button asChild className="w-full">
-                  <Link href="/dashboard/posts/new">New Post</Link>
+                  <Link href="/posts/create">新しい記事</Link>
                 </Button>
               </div>
             </CardContent>
@@ -72,9 +72,9 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Profile</CardTitle>
+              <CardTitle>プロフィール</CardTitle>
               <CardDescription>
-                Manage your account settings
+                アカウント設定を管理する
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -84,7 +84,7 @@ export default function DashboardPage() {
                   <p className="text-muted-foreground">{user?.email}</p>
                 </div>
                 <Button variant="outline" className="w-full">
-                  Edit Profile
+プロフィール編集
                 </Button>
               </div>
             </CardContent>

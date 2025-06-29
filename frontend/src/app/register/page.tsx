@@ -22,7 +22,7 @@ export default function RegisterPage() {
     e.preventDefault()
     
     if (password !== passwordConfirmation) {
-      alert('Passwords do not match')
+      alert('パスワードが一致しません')
       return
     }
 
@@ -44,9 +44,9 @@ export default function RegisterPage() {
     <div className="container mx-auto flex items-center justify-center min-h-[600px] px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center">Create an account</CardTitle>
+          <CardTitle className="text-2xl text-center">アカウント作成</CardTitle>
           <CardDescription className="text-center">
-            Enter your information to create your account
+            アカウントを作成するために情報を入力してください
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -58,11 +58,11 @@ export default function RegisterPage() {
             )}
             
             <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">名前</Label>
               <Input
                 id="name"
                 type="text"
-                placeholder="Enter your name"
+                placeholder="お名前を入力"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -71,11 +71,11 @@ export default function RegisterPage() {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">メールアドレス</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="Enter your email"
+                placeholder="メールアドレスを入力"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -84,11 +84,11 @@ export default function RegisterPage() {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">パスワード</Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="Enter your password (min. 8 characters)"
+                placeholder="パスワードを入力（最低8文字）"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -98,11 +98,11 @@ export default function RegisterPage() {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="passwordConfirmation">Confirm Password</Label>
+              <Label htmlFor="passwordConfirmation">パスワード確認</Label>
               <Input
                 id="passwordConfirmation"
                 type="password"
-                placeholder="Confirm your password"
+                placeholder="パスワードを再入力"
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 required
@@ -116,14 +116,14 @@ export default function RegisterPage() {
               className="w-full" 
               disabled={isLoading || !name || !email || !password || !passwordConfirmation}
             >
-              {isLoading ? 'Creating account...' : 'Create account'}
+              {isLoading ? 'アカウント作成中...' : 'アカウント作成'}
             </Button>
           </form>
           
           <div className="mt-6 text-center text-sm">
-            <span className="text-muted-foreground">Already have an account? </span>
+            <span className="text-muted-foreground">すでにアカウントをお持ちですか？ </span>
             <Link href="/login" className="font-medium text-primary hover:underline">
-              Sign in
+              ログイン
             </Link>
           </div>
         </CardContent>

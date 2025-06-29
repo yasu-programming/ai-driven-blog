@@ -36,9 +36,9 @@ export default function LoginPage() {
     <div className="container mx-auto flex items-center justify-center min-h-[600px] px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center">Welcome back</CardTitle>
+          <CardTitle className="text-2xl text-center">おかえりなさい</CardTitle>
           <CardDescription className="text-center">
-            Enter your credentials to access your account
+            アカウントにアクセスするためにログイン情報を入力してください
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -50,11 +50,11 @@ export default function LoginPage() {
             )}
             
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">メールアドレス</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="Enter your email"
+                placeholder="メールアドレスを入力"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -63,11 +63,11 @@ export default function LoginPage() {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">パスワード</Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="Enter your password"
+                placeholder="パスワードを入力"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -80,14 +80,14 @@ export default function LoginPage() {
               className="w-full" 
               disabled={isLoading || !email || !password}
             >
-              {isLoading ? 'Signing in...' : 'Sign in'}
+              {isLoading ? 'ログイン中...' : 'ログイン'}
             </Button>
           </form>
           
           <div className="mt-6 text-center text-sm">
-            <span className="text-muted-foreground">Don't have an account? </span>
+            <span className="text-muted-foreground">アカウントをお持ちではありませんか？ </span>
             <Link href="/register" className="font-medium text-primary hover:underline">
-              Sign up
+              アカウント作成
             </Link>
           </div>
         </CardContent>

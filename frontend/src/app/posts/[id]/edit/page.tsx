@@ -90,12 +90,12 @@ export default function EditPostPage() {
 
       if (!response.ok) {
         if (response.status === 404) {
-          throw new Error('Post not found')
+          throw new Error('記事が見つかりません')
         }
         if (response.status === 403) {
-          throw new Error('You do not have permission to edit this post')
+          throw new Error('この記事を編集する権限がありません')
         }
-        throw new Error('Failed to fetch post')
+        throw new Error('記事の取得に失敗しました')
       }
 
       const data = await response.json()
@@ -103,7 +103,7 @@ export default function EditPostPage() {
 
       // Check if user owns this post
       if (postData.author.id !== user?.id) {
-        throw new Error('You do not have permission to edit this post')
+        throw new Error('この記事を編集する権限がありません')
       }
 
       setPost(postData)
@@ -118,7 +118,7 @@ export default function EditPostPage() {
       })
       setSelectedTags(postData.tags || [])
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to fetch post')
+      setError(error instanceof Error ? error.message : '記事の取得に失敗しました')
     } finally {
       setLoading(false)
     }
@@ -178,13 +178,13 @@ export default function EditPostPage() {
 
       if (!response.ok) {
         const data = await response.json()
-        throw new Error(data.message || 'Failed to update post')
+        throw new Error(data.message || '記事の更新に失敗しました')
       }
 
       const data = await response.json()
       router.push(`/posts/${data.data.id}`)
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to update post')
+      setError(error instanceof Error ? error.message : '記事の更新に失敗しました')
     } finally {
       setSaving(false)
     }
@@ -236,10 +236,10 @@ export default function EditPostPage() {
           <div className="space-x-4">
             <Button onClick={() => router.back()}>
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Go Back
+戻る
             </Button>
             <Button variant="outline" onClick={() => router.push('/posts')}>
-              Browse Posts
+記事一覧
             </Button>
           </div>
         </div>
@@ -253,13 +253,13 @@ export default function EditPostPage() {
         {/* Header */}
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold">Edit Post</h1>
-            <p className="text-muted-foreground">Update your blog post</p>
+            <h1 className="text-3xl font-bold">記事を編集</h1>
+            <p className="text-muted-foreground">ブログ記事を更新しましょう</p>
           </div>
           <div className="flex gap-2">
             <Button variant="outline" onClick={() => router.back()}>
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Cancel
+キャンセル
             </Button>
             <Button 
               variant="outline" 
@@ -267,14 +267,14 @@ export default function EditPostPage() {
               disabled={saving || !formData.title.trim()}
             >
               <Save className="mr-2 h-4 w-4" />
-              Save Draft
+下書き保存
             </Button>
             <Button 
               onClick={() => handleSubmit('published')}
               disabled={saving || !formData.title.trim() || !formData.content.trim()}
             >
               <Eye className="mr-2 h-4 w-4" />
-              {formData.status === 'published' ? 'Update' : 'Publish'}
+              {formData.status === 'published' ? '更新' : '公開'}
             </Button>
           </div>
         </div>
@@ -290,39 +290,39 @@ export default function EditPostPage() {
           <div className="lg:col-span-2 space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Post Content</CardTitle>
+                <CardTitle>記事内容</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="title">Title *</Label>
+                  <Label htmlFor="title">タイトル *</Label>
                   <Input
                     id="title"
                     value={formData.title}
                     onChange={(e) => handleInputChange('title', e.target.value)}
-                    placeholder="Enter post title..."
+                    placeholder="記事のタイトルを入力してください..."
                     className="mt-1"
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="summary">Summary</Label>
+                  <Label htmlFor="summary">概要</Label>
                   <Textarea
                     id="summary"
                     value={formData.summary}
                     onChange={(e) => handleInputChange('summary', e.target.value)}
-                    placeholder="Brief summary of your post..."
+                    placeholder="記事の簡潔な概要..."
                     rows={3}
                     className="mt-1"
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="content">Content *</Label>
+                  <Label htmlFor="content">内容 *</Label>
                   <Textarea
                     id="content"
                     value={formData.content}
                     onChange={(e) => handleInputChange('content', e.target.value)}
-                    placeholder="Write your post content here..."
+                    placeholder="記事の内容をここに書いてください..."
                     rows={15}
                     className="mt-1"
                   />
@@ -333,29 +333,29 @@ export default function EditPostPage() {
             {/* SEO Settings */}
             <Card>
               <CardHeader>
-                <CardTitle>SEO Settings</CardTitle>
+                <CardTitle>SEO設定</CardTitle>
                 <CardDescription>
-                  Optimize your post for search engines
+                  検索エンジン向けに記事を最適化
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="meta_description">Meta Description</Label>
+                  <Label htmlFor="meta_description">メタディスクリプション</Label>
                   <Textarea
                     id="meta_description"
                     value={formData.meta_description}
                     onChange={(e) => handleInputChange('meta_description', e.target.value)}
-                    placeholder="SEO meta description..."
+                    placeholder="SEO用のメタディスクリプション..."
                     rows={3}
                     className="mt-1"
                   />
                   <p className="text-sm text-muted-foreground mt-1">
-                    {formData.meta_description.length}/160 characters
+                    {formData.meta_description.length}/160 文字
                   </p>
                 </div>
 
                 <div>
-                  <Label htmlFor="featured_image">Featured Image URL</Label>
+                  <Label htmlFor="featured_image">アイキャッチ画像URL</Label>
                   <Input
                     id="featured_image"
                     value={formData.featured_image}
@@ -373,14 +373,14 @@ export default function EditPostPage() {
             {/* Publish Settings */}
             <Card>
               <CardHeader>
-                <CardTitle>Publish Settings</CardTitle>
+                <CardTitle>公開設定</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="category">Category</Label>
+                  <Label htmlFor="category">カテゴリー</Label>
                   <Select value={formData.category_id} onValueChange={(value) => handleInputChange('category_id', value)}>
                     <SelectTrigger className="mt-1">
-                      <SelectValue placeholder="Select category..." />
+                      <SelectValue placeholder="カテゴリーを選択..." />
                     </SelectTrigger>
                     <SelectContent>
                       {categories.map((category) => (
@@ -393,14 +393,14 @@ export default function EditPostPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="status">Status</Label>
+                  <Label htmlFor="status">ステータス</Label>
                   <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
                     <SelectTrigger className="mt-1">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="draft">Draft</SelectItem>
-                      <SelectItem value="published">Published</SelectItem>
+                      <SelectItem value="draft">下書き</SelectItem>
+                      <SelectItem value="published">公開済み</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -410,9 +410,9 @@ export default function EditPostPage() {
             {/* Tags */}
             <Card>
               <CardHeader>
-                <CardTitle>Tags</CardTitle>
+                <CardTitle>タグ</CardTitle>
                 <CardDescription>
-                  Add tags to categorize your post
+                  記事を分類するためのタグを追加
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -420,7 +420,7 @@ export default function EditPostPage() {
                   <Input
                     value={newTagInput}
                     onChange={(e) => setNewTagInput(e.target.value)}
-                    placeholder="Add tag..."
+                    placeholder="タグを追加..."
                     onKeyPress={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault()
@@ -429,7 +429,7 @@ export default function EditPostPage() {
                     }}
                   />
                   <Button onClick={handleAddTag} size="sm">
-                    Add
+追加
                   </Button>
                 </div>
 
@@ -454,15 +454,15 @@ export default function EditPostPage() {
             {/* Post Preview */}
             <Card>
               <CardHeader>
-                <CardTitle>Preview</CardTitle>
+                <CardTitle>プレビュー</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
                   <h3 className="font-semibold line-clamp-2">
-                    {formData.title || 'Post Title'}
+                    {formData.title || '記事タイトル'}
                   </h3>
                   <p className="text-sm text-muted-foreground line-clamp-3">
-                    {formData.summary || formData.content.substring(0, 100) + '...' || 'Post content preview...'}
+                    {formData.summary || formData.content.substring(0, 100) + '...' || '記事内容のプレビュー...'}
                   </p>
                   <div className="flex flex-wrap gap-1">
                     {selectedTags.slice(0, 3).map((tag) => (

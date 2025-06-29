@@ -56,15 +56,15 @@ export default function PostDetailPage() {
         
         if (!response.ok) {
           if (response.status === 404) {
-            throw new Error('Post not found')
+            throw new Error('記事が見つかりません')
           }
-          throw new Error('Failed to fetch post')
+          throw new Error('記事の取得に失敗しました')
         }
 
         const data = await response.json()
         setPost(data.data)
       } catch (error) {
-        setError(error instanceof Error ? error.message : 'Failed to fetch post')
+        setError(error instanceof Error ? error.message : '記事の取得に失敗しました')
       } finally {
         setLoading(false)
       }
@@ -119,11 +119,11 @@ export default function PostDetailPage() {
           <p className="text-red-600 text-lg mb-4">{error}</p>
           <div className="space-x-4">
             <Button onClick={() => router.back()}>
-              Go Back
+戻る
             </Button>
             <Button variant="outline" asChild>
               <Link href="/posts">
-                Browse Posts
+記事一覧
               </Link>
             </Button>
           </div>
@@ -142,7 +142,7 @@ export default function PostDetailPage() {
         {/* Back Button */}
         <Button variant="ghost" onClick={() => router.back()} className="mb-4">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back
+戻る
         </Button>
 
         {/* Post Header */}
@@ -183,15 +183,15 @@ export default function PostDetailPage() {
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground border-b pb-4">
             <div className="flex items-center gap-1">
               <User className="h-4 w-4" />
-              <span>By {post.author.name}</span>
+              <span>投稿者: {post.author.name}</span>
             </div>
             
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               <span>
                 {post.published_at 
-                  ? `Published ${formatDate(post.published_at)}`
-                  : `Created ${formatDate(post.created_at)}`
+                  ? `公開日: ${formatDate(post.published_at)}`
+                  : `作成日: ${formatDate(post.created_at)}`
                 }
               </span>
             </div>
@@ -199,7 +199,7 @@ export default function PostDetailPage() {
             {post.published_at !== post.updated_at && (
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
-                <span>Updated {formatDate(post.updated_at)}</span>
+                <span>更新日: {formatDate(post.updated_at)}</span>
               </div>
             )}
           </div>
@@ -220,7 +220,7 @@ export default function PostDetailPage() {
             <CardHeader>
               <div className="flex items-center gap-2">
                 <Tag className="h-5 w-5" />
-                <h3 className="text-lg font-semibold">Tags</h3>
+                <h3 className="text-lg font-semibold">タグ</h3>
               </div>
             </CardHeader>
             <CardContent>
@@ -239,7 +239,7 @@ export default function PostDetailPage() {
         <div className="flex justify-between items-center pt-6 border-t">
           <Button variant="outline" asChild>
             <Link href="/posts">
-              ← All Posts
+← 全ての記事
             </Link>
           </Button>
           
@@ -248,12 +248,12 @@ export default function PostDetailPage() {
               <Button variant="outline" asChild>
                 <Link href={`/posts/${post.id}/edit`}>
                   <Edit className="mr-2 h-4 w-4" />
-                  Edit Post
+記事を編集
                 </Link>
               </Button>
             )}
             <div className="text-sm text-muted-foreground">
-              Post ID: {post.id}
+記事ID: {post.id}
             </div>
           </div>
         </div>

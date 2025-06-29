@@ -74,7 +74,7 @@ export default function PostsPage() {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts?${params}`)
       
       if (!response.ok) {
-        throw new Error('Failed to fetch posts')
+        throw new Error('記事の取得に失敗しました')
       }
 
       const data = await response.json()
@@ -88,7 +88,7 @@ export default function PostsPage() {
         to: data.data.to,
       })
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to fetch posts')
+      setError(error instanceof Error ? error.message : '記事の取得に失敗しました')
     } finally {
       setLoading(false)
     }
@@ -105,7 +105,7 @@ export default function PostsPage() {
   }
 
   const formatDate = (dateString?: string) => {
-    if (!dateString) return 'Draft'
+    if (!dateString) return '下書き'
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
@@ -124,9 +124,9 @@ export default function PostsPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold">Blog Posts</h1>
+            <h1 className="text-3xl font-bold">ブログ記事</h1>
             <p className="text-muted-foreground mt-2">
-              Discover articles and insights from our community
+              コミュニティからの記事と洞察を発見しましょう
             </p>
           </div>
         </div>
@@ -135,11 +135,11 @@ export default function PostsPage() {
         <form onSubmit={handleSearch} className="flex gap-2 max-w-md">
           <Input
             type="text"
-            placeholder="Search posts..."
+            placeholder="記事を検索..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <Button type="submit">Search</Button>
+          <Button type="submit">検索</Button>
         </form>
 
         {/* Loading State */}
@@ -166,7 +166,7 @@ export default function PostsPage() {
           <div className="text-center py-12">
             <p className="text-red-600 mb-4">{error}</p>
             <Button onClick={() => fetchPosts(currentPage, search)}>
-              Try Again
+              再試行
             </Button>
           </div>
         )}
@@ -176,7 +176,7 @@ export default function PostsPage() {
           <>
             {posts.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-muted-foreground text-lg">No posts found.</p>
+                <p className="text-muted-foreground text-lg">記事が見つかりません。</p>
                 {search && (
                   <Button 
                     onClick={() => {
@@ -186,7 +186,7 @@ export default function PostsPage() {
                     }}
                     className="mt-4"
                   >
-                    Clear Search
+検索をクリア
                   </Button>
                 )}
               </div>
@@ -210,7 +210,7 @@ export default function PostsPage() {
                           </Badge>
                         </div>
                         <CardDescription>
-                          By {post.author.name} • {formatDate(post.published_at)}
+{post.author.name} が投稿 • {formatDate(post.published_at)}
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
@@ -243,7 +243,7 @@ export default function PostsPage() {
 
                         <Button variant="link" className="mt-4 p-0" asChild>
                           <Link href={`/posts/${post.id}`}>
-                            Read More →
+詳しく読む →
                           </Link>
                         </Button>
                       </CardContent>
@@ -259,7 +259,7 @@ export default function PostsPage() {
                       onClick={() => setCurrentPage(currentPage - 1)}
                       disabled={currentPage <= 1}
                     >
-                      Previous
+前へ
                     </Button>
                     
                     <div className="flex items-center space-x-1">
@@ -293,7 +293,7 @@ export default function PostsPage() {
                       onClick={() => setCurrentPage(currentPage + 1)}
                       disabled={currentPage >= pagination.last_page}
                     >
-                      Next
+次へ
                     </Button>
                   </div>
                 )}
@@ -301,7 +301,7 @@ export default function PostsPage() {
                 {/* Results Info */}
                 {pagination && (
                   <div className="text-center text-sm text-muted-foreground mt-4">
-                    Showing {pagination.from}-{pagination.to} of {pagination.total} posts
+{pagination.total}件中 {pagination.from}-{pagination.to}件を表示
                   </div>
                 )}
               </>
