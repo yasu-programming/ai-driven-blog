@@ -7,7 +7,8 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
-import { ArrowLeft, Calendar, User, Tag, Folder } from 'lucide-react'
+import { ArrowLeft, Calendar, User, Tag, Folder, Edit } from 'lucide-react'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface Post {
   id: number
@@ -40,6 +41,7 @@ interface Post {
 export default function PostDetailPage() {
   const params = useParams()
   const router = useRouter()
+  const { user } = useAuth()
   const [post, setPost] = useState<Post | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -241,8 +243,18 @@ export default function PostDetailPage() {
             </Link>
           </Button>
           
-          <div className="text-sm text-muted-foreground">
-            Post ID: {post.id}
+          <div className="flex items-center gap-4">
+            {user && post.author.id === user.id && (
+              <Button variant="outline" asChild>
+                <Link href={`/posts/${post.id}/edit`}>
+                  <Edit className="mr-2 h-4 w-4" />
+                  Edit Post
+                </Link>
+              </Button>
+            )}
+            <div className="text-sm text-muted-foreground">
+              Post ID: {post.id}
+            </div>
           </div>
         </div>
       </div>

@@ -42,6 +42,9 @@ export function Header() {
         <div className="flex space-x-2">
           {user ? (
             <div className="flex items-center space-x-2">
+              <Button variant="outline" asChild>
+                <Link href="/posts/create">Create Post</Link>
+              </Button>
               <span className="text-sm text-muted-foreground">
                 Welcome, {user.name}
               </span>
