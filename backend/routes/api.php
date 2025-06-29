@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 
 // Authentication routes
 Route::post('/register', [AuthController::class, 'register']);
@@ -11,22 +12,13 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::get('/user', [AuthController::class, 'user'])->middleware('auth:sanctum');
 
 // Posts API routes
-Route::prefix('posts')->group(function () {
-    Route::get('/', function () {
-        return response()->json(['message' => 'Posts list endpoint']);
-    });
-    Route::get('/{id}', function ($id) {
-        return response()->json(['message' => "Post $id details endpoint"]);
-    });
-    Route::post('/', function () {
-        return response()->json(['message' => 'Create post endpoint']);
-    })->middleware('auth:sanctum');
-    Route::put('/{id}', function ($id) {
-        return response()->json(['message' => "Update post $id endpoint"]);
-    })->middleware('auth:sanctum');
-    Route::delete('/{id}', function ($id) {
-        return response()->json(['message' => "Delete post $id endpoint"]);
-    })->middleware('auth:sanctum');
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/posts', [PostController::class, 'store']);
+    Route::put('/posts/{post}', [PostController::class, 'update']);
+    Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 });
 
 // AI API routes
