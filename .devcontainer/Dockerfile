@@ -1,5 +1,5 @@
 # AI-Driven Blog Development Container
-FROM mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye
+FROM mcr.microsoft.com/devcontainers/typescript-node:1-22-bullseye
 
 # Install PHP and extensions
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
