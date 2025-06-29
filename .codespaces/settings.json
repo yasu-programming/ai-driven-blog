@@ -1,0 +1,159 @@
+{
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.profiles.linux": {
+    "zsh": {
+      "path": "/bin/zsh",
+      "args": ["-l"]
+    }
+  },
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.iconTheme": "vs-seti",
+  "editor.fontSize": 14,
+  "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace",
+  "editor.minimap.enabled": true,
+  "editor.wordWrap": "on",
+  "editor.rulers": [80, 120],
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  
+  // PHP Settings
+  "php.validate.executablePath": "/usr/bin/php8.2",
+  "php.suggest.basic": false,
+  "intelephense.files.maxSize": 5000000,
+  "intelephense.environment.documentRoot": "/workspace/backend/public",
+  
+  // JavaScript/TypeScript Settings
+  "typescript.preferences.quoteStyle": "single",
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.suggest.autoImports": true,
+  "javascript.suggest.autoImports": true,
+  
+  // Prettier Settings
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.trailingComma": "es5",
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  
+  // Editor Formatting
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "[blade]": {
+    "editor.defaultFormatter": "onecentlin.laravel-blade"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  
+  // File Associations
+  "files.associations": {
+    "*.blade.php": "blade",
+    "*.env.example": "dotenv",
+    "*.env.codespaces": "dotenv",
+    "artisan": "php"
+  },
+  
+  // Emmet
+  "emmet.includeLanguages": {
+    "blade": "html",
+    "javascript": "javascriptreact"
+  },
+  
+  // TailwindCSS
+  "tailwindCSS.includeLanguages": {
+    "blade": "html",
+    "javascript": "javascript",
+    "typescript": "typescript"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["classnames\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  
+  // Laravel
+  "laravel.artisan.path": "/workspace/backend/artisan",
+  "laravel.artisan.binPath": "/usr/bin/php8.2",
+  
+  // Git
+  "git.openRepositoryInParentFolders": "always",
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  
+  // Explorer
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.ts": "${capture}.js, ${capture}.d.ts.map, ${capture}.d.ts, ${capture}.js.map",
+    "*.tsx": "${capture}.ts",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml",
+    "tailwind.config.*": "tailwind.config*, postcss.config*",
+    ".env": ".env.*, .env-*"
+  },
+  
+  // Search
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/vendor": true,
+    "**/storage": true,
+    "**/bootstrap/cache": true,
+    "**/.next": true,
+    "**/dist": true,
+    "**/build": true
+  },
+  
+  // Auto Save
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  
+  // Terminal
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.copyOnSelection": true,
+  
+  // Error Lens
+  "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+  "errorLens.followCursor": "allLines",
+  
+  // TODO Highlight
+  "todohighlight.keywords": [
+    {
+      "text": "TODO:",
+      "color": "#ff6b6b",
+      "backgroundColor": "transparent"
+    },
+    {
+      "text": "FIXME:",
+      "color": "#ffa726",
+      "backgroundColor": "transparent"
+    },
+    {
+      "text": "NOTE:",
+      "color": "#42a5f5",
+      "backgroundColor": "transparent"
+    }
+  ],
+  
+  // Code Spell Checker
+  "cSpell.words": [
+    "artisan",
+    "laravel",
+    "nextjs",
+    "tailwindcss",
+    "codespaces",
+    "devcontainer",
+    "intelephense",
+    "pgsql",
+    "redis",
+    "mailhog"
+  ]
+}

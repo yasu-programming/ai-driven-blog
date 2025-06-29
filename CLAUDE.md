@@ -70,12 +70,34 @@ Main entities:
 - **tags**: id, name, slug, count
 - **post_tags**: Many-to-many relationship table
 
-## Development Setup (Future)
+## Development Setup
 
+### Local Development
 When the technical implementation begins, expect to run:
 - `composer install` and `php artisan serve` for Laravel backend
 - `npm install` and `npm run dev` for Next.js frontend
 - Docker containers for development environment consistency
+
+### GitHub Codespaces (Recommended)
+This project is fully configured for GitHub Codespaces development:
+- One-click development environment setup
+- Pre-configured with PHP 8.2, Node.js, PostgreSQL, Redis
+- Automatic service initialization and port forwarding
+- Integrated development tools and debugging capabilities
+
+**Quick Start with Codespaces:**
+1. Click "Code" → "Codespaces" → "Create codespace on main"
+2. Wait for automatic setup completion
+3. Run `./dev start` to begin development session
+
+**Available Services in Codespaces:**
+- Frontend (Next.js): http://localhost:3000
+- Backend (Laravel): http://localhost:8000  
+- Database: PostgreSQL (auto-configured)
+- Cache: Redis (auto-configured)
+- Mail Testing: MailHog on http://localhost:8025
+
+See `CODESPACES.md` for detailed setup and usage instructions.
 
 ## Issue Management
 

@@ -1,0 +1,55 @@
+version: 2
+updates:
+  # Enable version updates for npm (frontend)
+  - package-ecosystem: "npm"
+    directory: "/frontend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "yasunori"
+    assignees:
+      - "yasunori"
+    commit-message:
+      prefix: "deps"
+      prefix-development: "deps-dev"
+
+  # Enable version updates for Composer (backend)
+  - package-ecosystem: "composer"
+    directory: "/backend"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "yasunori"
+    assignees:
+      - "yasunori"
+    commit-message:
+      prefix: "deps"
+      prefix-development: "deps-dev"
+
+  # Enable version updates for Docker
+  - package-ecosystem: "docker"
+    directory: "/.devcontainer"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "yasunori"
+    assignees:
+      - "yasunori"
+    commit-message:
+      prefix: "docker"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "yasunori"
+    assignees:
+      - "yasunori"
+    commit-message:
+      prefix: "ci"

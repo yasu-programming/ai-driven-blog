@@ -1,0 +1,43 @@
+name: Codespaces Prebuilds
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.devcontainer/**'
+      - 'package*.json'
+      - 'composer.json'
+      - 'Dockerfile*'
+      - 'docker-compose*.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.devcontainer/**'
+      - 'package*.json'
+      - 'composer.json'
+      - 'Dockerfile*'
+      - 'docker-compose*.yml'
+  workflow_dispatch:
+
+jobs:
+  prebuild:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'yasunori' # Replace with your GitHub username
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Trigger Codespaces Prebuild
+        uses: github/codespaces-prebuild@v1
+        with:
+          devcontainer_file_path: .devcontainer/devcontainer.json
+          
+      - name: Log Prebuild Status
+        run: |
+          echo "Codespaces prebuild triggered for:"
+          echo "- Branch: ${{ github.ref_name }}"
+          echo "- Commit: ${{ github.sha }}"
+          echo "- Devcontainer: .devcontainer/devcontainer.json"
