@@ -45,7 +45,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const fetchUser = async () => {
     try {
-      const response = await fetch('/api/user', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
         headers: {
           'Authorization': `Bearer ${token || localStorage.getItem('auth_token')}`,
           'Content-Type': 'application/json',

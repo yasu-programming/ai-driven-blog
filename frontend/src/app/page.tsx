@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import RecentPosts from "@/components/RecentPosts";
 
 export default function Home() {
   return (
@@ -81,30 +82,7 @@ export default function Home() {
           </Button>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Placeholder cards for recent posts */}
-          {[1, 2, 3].map((i) => (
-            <Card key={i} className="hover:shadow-md transition-shadow">
-              <CardHeader>
-                <CardTitle className="line-clamp-2">
-                  Sample Blog Post Title {i}
-                </CardTitle>
-                <CardDescription>
-                  Published on January {i}, 2024
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground line-clamp-3">
-                  This is a sample blog post excerpt that demonstrates how the blog posts will be displayed 
-                  on the homepage. The actual content will be fetched from the Laravel backend.
-                </p>
-                <Button variant="link" className="mt-2 p-0" asChild>
-                  <Link href={`/posts/${i}`}>Read More →</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <RecentPosts />
       </section>
     </div>
   );
